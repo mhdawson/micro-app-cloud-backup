@@ -5,3 +5,38 @@ Copyright 2016 the project authors as listed in the AUTHORS file.
 All rights reserved. Use of this source code is governed by the
 license that can be found in the LICENSE file.
 -->
+
+<html>
+  <head>
+    <title><DASHBOARD TITLE></title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var showLog = function() {
+        var eventLog = document.getElementById('eventLog');
+        eventLog.style.display = 'inline';
+      }
+
+      window.onload = function() {
+        var eventLog = document.getElementById('eventLog');
+        eventLog.style.display = 'none';
+
+        socket = new io.connect('<URL_TYPE>://' + window.location.host);
+        socket.on('eventLog', function(line) {
+          var eventLog = document.getElementById('eventLog');
+          eventLog.innerHTML = line + '<br>' + eventLog.innerHTML;
+        });
+        socket.on('clearLog', function(line) {
+          var eventLog = document.getElementById('eventLog');
+          eventLog.innerHTML = '';
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <table appWindow cellpadding="0" cellspacing="0">
+       <tr><td><table cellpadding="0" cellspacing="0" id="buttons"><BUTTONS></table></td></tr>
+       <tr><td><table cellpadding="0" cellspacing="0" id="frames"><FRAMES></table></td></tr>
+    </table>
+  <body>
+</html>
