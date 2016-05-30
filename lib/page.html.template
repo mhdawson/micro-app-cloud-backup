@@ -11,9 +11,20 @@ license that can be found in the LICENSE file.
     <title><DASHBOARD TITLE></title>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var showLog = function() {
-        var eventLog = document.getElementById('eventLog');
-        eventLog.style.display = 'inline';
+      var socket
+      var pageObject;
+      <PAGES>
+      var showPage = function(page) {
+        for (var i = 0; i < pages.length; i++) {
+          pageObject = document.getElementById(pages[i]);
+          pageObject.style.display = 'none';
+        }
+        pageObject = document.getElementById(page);
+        pageObject.style.display = 'inline';
+
+        if (page == 'docker') {
+          socket.emit('dockerListRequest');
+        }
       }
 
       window.onload = function() {
@@ -29,14 +40,20 @@ license that can be found in the LICENSE file.
           var eventLog = document.getElementById('eventLog');
           eventLog.innerHTML = '';
         });
+
+        socket.on('dockerList', function(dockerList) {
+          var page = document.getElementById('docker');
+          eventLog.innerHTML = dockerList;
+        });
+
       }
     </script>
   </head>
 
   <body>
-    <table appWindow cellpadding="0" cellspacing="0">
+    <table width="100%" height="100%" cellpadding="0" cellspacing="0">
        <tr><td><table cellpadding="0" cellspacing="0" id="buttons"><BUTTONS></table></td></tr>
-       <tr><td><table cellpadding="0" cellspacing="0" id="frames"><FRAMES></table></td></tr>
+       <tr><td><table cellpadding="0" cellspacing="0" id="frames"><FRAMES></table></td></tr> 
     </table>
   <body>
 </html>
