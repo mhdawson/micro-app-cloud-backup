@@ -23,7 +23,10 @@ license that can be found in the LICENSE file.
         pageObject.style.display = 'inline';
 
         if (page == 'docker') {
-          socket.emit('dockerListRequest');
+          var page = document.getElementById('docker');
+          page.innerHTML = 'fetching docker list';
+          console.log('sent dockerListRequest');
+          socket.emit('dockerListRequest', 'test');
         }
       }
 
@@ -42,8 +45,8 @@ license that can be found in the LICENSE file.
         });
 
         socket.on('dockerList', function(dockerList) {
-          var page = document.getElementById('docker');
-          eventLog.innerHTML = dockerList;
+          var dockerpage = document.getElementById('docker');
+          dockerpage.innerHTML = dockerList;
         });
 
       }
