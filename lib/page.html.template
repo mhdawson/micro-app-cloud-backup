@@ -22,12 +22,29 @@ license that can be found in the LICENSE file.
         pageObject = document.getElementById(page);
         pageObject.style.display = 'inline';
 
-        if (page == 'docker') {
+        if (page == 'dockerWrapper') {
           var page = document.getElementById('docker');
           page.innerHTML = 'fetching docker list';
           console.log('sent dockerListRequest');
           socket.emit('dockerListRequest', 'test');
         }
+      }
+
+      var saveDockerList = function() {
+        var counter = 0;
+        var dockerList = new Array();
+        while(true) {
+          var entry = document.getElementById('docker' + counter);
+          if ((entry !== undefined) && (entry !== null)) {
+            if (entry.checked) {
+              dockerList.push(entry.value);
+            }
+            counter++;
+          } else {
+            break;
+          }
+        }
+        socket.emit('dockerListSave', dockerList);
       }
 
       window.onload = function() {
