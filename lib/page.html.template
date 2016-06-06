@@ -25,9 +25,13 @@ license that can be found in the LICENSE file.
         if (page == 'dockerWrapper') {
           var page = document.getElementById('docker');
           page.innerHTML = 'fetching docker list';
-          console.log('sent dockerListRequest');
           socket.emit('dockerListRequest', 'test');
+        } else if (page == 'uploadDirs') {
+          socket.emit('uploadList');
+        } else if (page == 'downloadDirs') {
+          socket.emit('downloadList');
         }
+
       }
 
       var saveDockerList = function() {
@@ -64,6 +68,16 @@ license that can be found in the LICENSE file.
         socket.on('dockerList', function(dockerList) {
           var dockerpage = document.getElementById('docker');
           dockerpage.innerHTML = dockerList;
+        });
+
+        socket.on('uploadEntries', function(uploadEntries) {
+          var page = document.getElementById('uploadDirs');
+          page.innerHTML = uploadEntries; 
+        });
+
+        socket.on('downloadEntries', function(downloadEntries) {
+          var page = document.getElementById('downloadDirs');
+          page.innerHTML = downloadEntries; 
         });
 
       }
