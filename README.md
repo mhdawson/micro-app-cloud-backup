@@ -8,6 +8,25 @@ the [google-drive-wrapper](https://github.com/mhdawson/google-drive-wrapper)
 project/npm and you must set up google drive credentials as
 outlined in the readme for that project.
 
+For me the initial use case will be to back docker images
+and lxc images which I have running in virtual machines
+hosted in the cloud. 
+
+For docker image backups, a new copy will only be upload
+if the image has changed or the target folder on google
+drive does not already include a backup that matches the
+current version of the image.
+
+For files being uploaded, the contents of the specified
+directories will be uploaded and once each file is uploaded
+it will be transferred to the specified "Move To" directory
+such that the source directory will be empty at the end
+of the transfer.
+
+For downloaded files, files will only be downloaded from
+the source google drive folder if a copy does not already
+exist in the local destination folder.
+
 Docker images and files which are uploaded are both
 encrypted and compressed as part of the upload.  Before using
 please ensure you have validated that the encryption is suitable
@@ -27,7 +46,7 @@ errors that may affect backup/upload/download progress
 occur.
 
 You can use the micro-app in the browser or get native
-look and feel on desktp and mobile devices with the
+look and feel on desktop and mobile devices with the
 [micro-app-cordova-launcher](https://github.com/mhdawson/micro-app-cordova-launcher)
 and [micro-app-electron-launcher](https://github.com/mhdawson/micro-app-electron-launcher)
 projects.
@@ -47,6 +66,14 @@ Here are some sample screenshots:
 ![Download tab](https://raw.githubusercontent.com/mhdawson/micro-app-cloud-backup/master/pictures/download.png?raw=true)
 
 ![EventLog tab](https://raw.githubusercontent.com/mhdawson/micro-app-cloud-backup/master/pictures/event-log.png?raw=true)
+
+
+# Configuration
+
+# Installation
+
+# Running
+
 
 
 
