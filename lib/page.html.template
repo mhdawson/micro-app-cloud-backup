@@ -31,7 +31,6 @@ license that can be found in the LICENSE file.
         } else if (page == 'downloadDirs') {
           socket.emit('downloadList');
         }
-
       }
 
       var saveDockerList = function() {
@@ -53,13 +52,14 @@ license that can be found in the LICENSE file.
 
       window.onload = function() {
         var eventLog = document.getElementById('eventLog');
-        eventLog.style.display = 'none';
 
         socket = new io.connect('<URL_TYPE>://' + window.location.host);
+
         socket.on('eventLog', function(line) {
           var eventLog = document.getElementById('eventLog');
           eventLog.innerHTML = line + '<br>' + eventLog.innerHTML;
         });
+
         socket.on('clearLog', function(line) {
           var eventLog = document.getElementById('eventLog');
           eventLog.innerHTML = '';
