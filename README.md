@@ -8,7 +8,7 @@ the [google-drive-wrapper](https://github.com/mhdawson/google-drive-wrapper)
 project/npm and you must set up google drive credentials as
 outlined in the readme for that project.
 
-For me the initial use case will be to back docker images
+For me the initial use case will be to backup docker images
 and lxc images which I have running in virtual machines
 hosted in the cloud. 
 
@@ -74,14 +74,14 @@ Most of the configuration is done in the lib/config.json
 file which supports the following configuration options:
 
 
-* title - title used to name the page for the app
-* serverPort - port on which alarm GUI is server
+* title - title used to name the page for the app.
+* serverPort - port on which the micro-app is listening for connections.
 * tls - if this value is the string "true" then the server will
   only support connections using tls. In this case there must
   be a cert.pem and key.pem which contain the key and
   certificate that will be used by the server in the lib directory.
 * authenticate - set to "true" to enable basic authentication. If set
-  to true then you must provide the "authInfo" values described below
+  to true then you must provide the "authInfo" values described below.
 * authInfo - object with username, password and realm values.
   authInfo.password is the hashed password that will be used to
   authenticate to the micro-app.  This can be generated with the
@@ -89,7 +89,7 @@ file which supports the following configuration options:
    .../node_modules/micro-app-framework/lib/gen_password.js.
   The first parameter is the password to be hashed.
 * twilio - object specifying the accountSID, accountAuthToken, fromNumber 
-  and toNumber that will be used to send SMS notifications
+  and toNumber that will be used to send SMS notifications.
 * clientSecretDir - the directory in which the client
   secret needed to use the google APIs will be located.  See
   [google-drive-wrapper](https://github.com/mhdawson/google-drive-wrapper)
@@ -99,14 +99,14 @@ file which supports the following configuration options:
   [google-drive-wrapper](https://github.com/mhdawson/google-drive-wrapper)
   for more details.
 * encPassword - the password that will be used to encrypt/decrypt when
-  uploading/downloading from google drive
+  uploading/downloading from google drive.
 * gdriveDockDir - the folder in your google drive to which docker
   images will be backed up.
 * dockerSchedule - schedule in cron format for times at which
   docker backups will be scheduled.
-* eventLogPrefix - directory in which log for alarm will be written
+* eventLogPrefix - directory in which log file will be written.
 * uploadDirs - array with zero or more entries for directories
-  that will be uploaded to google drive. As described below.
+  that will be uploaded to your google drive. As described below.
 * downloadDirs - array with zero or more entries for folders
   on your google drive that will be downloaded.  As described
   below. 
@@ -117,21 +117,21 @@ file which supports the following configuration options:
 
 Each of the entries for uploadDirs has the following fields:
 
-* localdir - local directory containing the files to be uploaded
+* localdir - local directory containing the files to be uploaded.
 * localdirDone - directory to which files will be moved
-  once they have been uploaded
+  once they have been uploaded.
 * gdriveDir - google drive folder to which files will be
-  transferred
+  transferred.
 * schedule - schedule in cron format for times at which
-  uploads will be scheduled
+  uploads will be scheduled.
 
 Each of the entries for downloadDirs has the following fields:
 
-* gdriveDir - forlder on your google drive from which files
-  will be downloaded
-* localdir - local folder into which files will be downloaded  
+* gdriveDir - folder on your google drive from which files
+  will be downloaded.
+* localdir - local folder into which files will be downloaded.
 * schedule - schedule in cron format for times at which
-  downloads will be scheduled
+  downloads will be scheduled.
  
 If required the key/certificate can be created using a command along 
 these lines (if tls is "true"):
@@ -141,7 +141,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout key.pem -out cert.pe
 </PRE>
 
 
-This is an example with sensitive parts masked out:
+This is an example of a configuration file with sensitive parts masked out:
 <PRE>
 {
   "serverPort": 9000,
